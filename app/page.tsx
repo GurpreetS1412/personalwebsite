@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { getWork } from "../lib/notion";
 
-export const revalidate = 3600;
-
 export default async function HomePage() {
   const work = await getWork();
 

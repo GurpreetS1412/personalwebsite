@@ -7,8 +7,9 @@
 //   NOTION_WORK_DATABASE_ID   - "Work" database
 //   NOTION_ABOUT_DATABASE_ID  - "About" database (experience / services / journal rows)
 
+import { cacheLife } from "next/cache";
+
 const NOTION_VERSION = "2022-06-28";
-const REVALIDATE_SECONDS = 3600; // ISR: refresh content hourly
 
 /* ---------- Types ---------- */
 
@@ -69,7 +70,6 @@ async function queryDatabase(
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ ...body, start_cursor: cursor, page_size: 100 }),
-        next: { revalidate: REVALIDATE_SECONDS },
       }
     );
 
@@ -104,6 +104,9 @@ const file = (p?: NotionProperty): string | null => {
 /* ---------- Public fetchers ---------- */
 
 export async function getWork(): Promise<WorkItem[]> {
+  "use cache";
+  cacheLife("hours");
+
   const pages = await queryDatabase(process.env.NOTION_WORK_DATABASE_ID, {
     filter: { property: "Published", checkbox: { equals: true } },
     sorts: [{ property: "Order", direction: "ascending" }],
@@ -120,6 +123,9 @@ export async function getWork(): Promise<WorkItem[]> {
 }
 
 export async function getAbout(): Promise<AboutItem[]> {
+  "use cache";
+  cacheLife("hours");
+
   const pages = await queryDatabase(process.env.NOTION_ABOUT_DATABASE_ID, {
     filter: { property: "Published", checkbox: { equals: true } },
     sorts: [{ property: "Order", direction: "ascending" }],

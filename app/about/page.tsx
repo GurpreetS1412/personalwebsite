@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { getAbout } from "../../lib/notion";
 
-export const revalidate = 3600;
-
 export default async function AboutPage() {
   const items = await getAbout();
   const services = items.filter((item) => item.section === "Services");
