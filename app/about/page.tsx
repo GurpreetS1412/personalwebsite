@@ -66,6 +66,7 @@ export default async function AboutPage() {
               <a href="https://www.linkedin.com/in/gurpreet-singh-65284b348/" target="_blank" rel="noopener noreferrer" className="block hover:text-black">LinkedIn</a>
               <a href="https://x.com/alex_gs2222" target="_blank" rel="noopener noreferrer" className="block hover:text-black">X</a>
               <span className="block">Discord: alex_gs0</span>
+              <a href="https://github.com/gurpreets1412" target="_blank" rel="noopener noreferrer" className="block hover:text-black">GitHub</a>
             </div>
           </div>
         </div>

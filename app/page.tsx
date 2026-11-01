@@ -91,7 +91,7 @@ export default async function HomePage() {
         <div className="flex gap-8 text-sm font-medium text-zinc-500">
           <a href="https://x.com/alex_gs2222" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">X</a>
           <a href="https://www.linkedin.com/in/gurpreet-singh-65284b348/" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">LinkedIn</a>
-          <a href="#" className="hover:text-black transition-colors">GitHub</a>
+          <a href="https://github.com/gurpreets1412" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">GitHub</a>
           <a href="mailto:gurpreet.work.singh@gmail.com" className="hover:text-black transition-colors">Email</a>
         </div>
       </footer>
