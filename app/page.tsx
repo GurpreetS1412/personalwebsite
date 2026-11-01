@@ -8,7 +8,7 @@ export default async function HomePage() {
     <main className="min-h-screen bg-white text-[#111] p-6 md:px-12 lg:px-24 font-sans">
       {/* Navigation */}
       <nav className="flex justify-between items-center py-8 mb-12">
-        <div className="text-sm font-medium tracking-tight">GURPREET SINGH</div>
+        <div className="text-sm font-medium tracking-tight">ALEX</div>
         <div className="flex gap-8 text-sm">
           <a href="#work" className="text-zinc-500 hover:text-black transition-colors">Work</a>
           <Link href="/about" className="text-zinc-500 hover:text-black transition-colors">About</Link>
@@ -23,7 +23,7 @@ export default async function HomePage() {
             Creative developer and designer focusing on building digital experiences that blend art and engineering.
           </h1>
           <p className="text-lg text-zinc-500 leading-relaxed max-w-xl">
-            Currently based in Haryana, India. I love exploring the intersection of design,
+            Currently based in India. I love exploring the intersection of design,
             technology and human behavior to create intentional products.
           </p>
         </div>
@@ -90,9 +90,7 @@ export default async function HomePage() {
         </div>
         <div className="flex gap-8 text-sm font-medium text-zinc-500">
           <a href="https://x.com/alex_gs2222" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">X</a>
-          <a href="https://www.linkedin.com/in/gurpreet-singh-65284b348/" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">LinkedIn</a>
           <a href="https://github.com/gurpreets1412" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">GitHub</a>
-          <a href="mailto:gurpreet.work.singh@gmail.com" className="hover:text-black transition-colors">Email</a>
         </div>
       </footer>
     </main>
