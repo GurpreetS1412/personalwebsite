@@ -10,7 +10,7 @@ export default async function AboutPage() {
   return (
     <main className="min-h-screen bg-[#f5f5f5] text-black p-6 md:px-12 lg:px-24 font-sans">
       <nav className="flex justify-between items-center py-8 mb-12">
-        <div className="text-sm font-medium tracking-tight">HARCH</div>
+        <div className="text-sm font-medium tracking-tight">GURPREET SINGH</div>
         <div className="flex gap-8 text-sm">
           <Link href="/" className="text-zinc-500 hover:text-black transition-colors">Work</Link>
           <Link href="/about" className="text-black font-medium">About</Link>
@@ -26,7 +26,7 @@ export default async function AboutPage() {
           </div>
           <div className="space-y-6">
             <h1 className="text-3xl md:text-4xl font-medium leading-tight tracking-tight">
-              I&apos;m Harch, a visual & interactive designer. Currently exploring the intersection of AI and human-centric design.
+              I&apos;m Gurpreet Singh, a visual & interactive designer. Currently exploring the intersection of AI and human-centric design.
             </h1>
           </div>
         </section>
@@ -62,10 +62,9 @@ export default async function AboutPage() {
           <div className="space-y-8">
             <h2 className="text-xs uppercase tracking-widest text-zinc-400 font-bold">Connect</h2>
             <div className="space-y-3 text-sm text-zinc-600">
-              <a href="mailto:hello@harch.com" className="block hover:text-black">Email</a>
-              <a href="#" className="block hover:text-black">Instagram</a>
-              <a href="#" className="block hover:text-black">LinkedIn</a>
-              <a href="#" className="block hover:text-black">Twitter</a>
+              <a href="mailto:gurpreet.work.singh@gmail.com" className="block hover:text-black">Email</a>
+              <a href="https://www.linkedin.com/in/gurpreet-singh-65284b348/" target="_blank" rel="noopener noreferrer" className="block hover:text-black">LinkedIn</a>
+              <a href="https://x.com/alex_gs2222" target="_blank" rel="noopener noreferrer" className="block hover:text-black">X</a>
             </div>
           </div>
         </div>
