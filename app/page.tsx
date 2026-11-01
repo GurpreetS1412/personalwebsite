@@ -1,9 +1,11 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
+import { getWork } from "../lib/notion";
 
-export default function HomePage() {
+export const revalidate = 3600;
+
+export default async function HomePage() {
+  const work = await getWork();
+
   return (
     <main className="min-h-screen bg-white text-[#111] p-6 md:px-12 lg:px-24 font-sans">
       {/* Navigation */}
@@ -16,7 +18,7 @@ export default function HomePage() {
         </div>
       </nav>
 
-      {/* Hero Section - Copied Layout from Screenshot */}
+      {/* Hero Section */}
       <header className="mb-32 mt-12">
         <div className="max-w-3xl">
           <h1 className="text-4xl md:text-6xl font-medium leading-tight tracking-tight mb-8 text-black">
@@ -29,54 +31,63 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Work Section - Exact Side-by-Side Layout from Screenshot */}
+      {/* Work Section - side-by-side rows, alternating sides */}
       <section id="work" className="mb-32">
         <h2 className="text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-12">
           Selected Work
         </h2>
         <div className="space-y-32">
-          {/* Project Item 1 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            <div className="aspect-[4/3] bg-zinc-100 rounded-sm overflow-hidden group">
-              <div className="w-full h-full bg-zinc-200 group-hover:scale-105 transition-transform duration-700 ease-in-out" />
-            </div>
-            <div className="flex flex-col justify-center pt-4">
-              <span className="text-xs text-zinc-400 uppercase tracking-wider mb-2">Website Design</span>
-              <h3 className="text-2xl font-medium mb-4 text-black">Project One Title</h3>
-              <p className="text-zinc-500 leading-relaxed mb-6 max-w-md">
-                A detailed description of the project. Focus on the problem solved and the
-                approach taken, exactly like the clean typography in Mindy's site.
-              </p>
-              <a href="#" className="text-sm font-medium border-b border-black pb-1 w-fit hover:text-zinc-500 hover:border-zinc-500 transition-all">
-                View Live Site →
-              </a>
-            </div>
-          </div>
+          {work.map((item, index) => {
+            const mediaFirst = index % 2 === 0;
 
-          {/* Project Item 2 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            <div className="order-2 md:order-1 flex flex-col justify-center pt-4">
-              <span className="text-xs text-zinc-400 uppercase tracking-wider mb-2">Brand Identity</span>
-              <h3 className="text-2xl font-medium mb-4 text-black">Project Two Title</h3>
-              <p className="text-zinc-500 leading-relaxed mb-6 max-w-md">
-                Another project description that emphasizes the clean, spacious feel
-                of the original example.
-              </p>
-              <a href="#" className="text-sm font-medium border-b border-black pb-1 w-fit hover:text-zinc-500 hover:border-zinc-500 transition-all">
-                View Project →
-              </a>
-            </div>
-            <div className="order-1 md:order-2 aspect-[4/3] bg-zinc-100 rounded-sm overflow-hidden group">
-              <div className="w-full h-full bg-zinc-200 group-hover:scale-105 transition-transform duration-700 ease-in-out" />
-            </div>
-          </div>
+            const media = (
+              <div className={`aspect-[4/3] bg-zinc-100 rounded-sm overflow-hidden group ${mediaFirst ? "" : "order-1 md:order-2"}`}>
+                {item.image ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-zinc-200 group-hover:scale-105 transition-transform duration-700 ease-in-out" />
+                )}
+              </div>
+            );
+
+            const text = (
+              <div className={`flex flex-col justify-center pt-4 ${mediaFirst ? "" : "order-2 md:order-1"}`}>
+                <span className="text-xs text-zinc-400 uppercase tracking-wider mb-2">
+                  {[item.category, item.year].filter(Boolean).join(" • ")}
+                </span>
+                <h3 className="text-2xl font-medium mb-4 text-black">{item.title}</h3>
+                {item.href && (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-medium border-b border-black pb-1 w-fit hover:text-zinc-500 hover:border-zinc-500 transition-all"
+                  >
+                    View Project →
+                  </a>
+                )}
+              </div>
+            );
+
+            return (
+              <div key={item.id} className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                {media}
+                {text}
+              </div>
+            );
+          })}
         </div>
       </section>
 
       {/* Footer */}
       <footer id="contact" className="py-24 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-start gap-12">
         <div>
-          <h2 className="text-2xl font-medium mb-4">Let's connect</h2>
+          <h2 className="text-2xl font-medium mb-4">Let&apos;s connect</h2>
           <p className="text-zinc-500">Available for collaborations.</p>
         </div>
         <div className="flex gap-8 text-sm font-medium text-zinc-500">
