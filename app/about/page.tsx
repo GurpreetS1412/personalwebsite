@@ -11,7 +11,7 @@ export default async function AboutPage() {
     <main className="min-h-screen bg-white text-[#111] font-sans">
       <nav className="flex justify-between items-center px-6 md:px-12 lg:px-24 py-8">
         <Link href="/" className="text-sm font-medium tracking-tight">ALEX</Link>
-        <div className="flex gap-8 text-sm">
+        <div className="flex gap-6 md:gap-8 text-sm">
           <Link href="/" className="text-zinc-500 hover:text-black transition-colors">Work</Link>
           <Link href="/about" className="text-black font-medium">About</Link>
           <a href="#contact" className="text-zinc-500 hover:text-black transition-colors">Contact</a>
