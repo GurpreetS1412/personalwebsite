@@ -5,61 +5,46 @@ export default async function HomePage() {
   const work = await getWork();
 
   return (
-    <main className="min-h-screen bg-white text-[#111] font-sans">
-      {/* Navigation */}
-      <nav className="flex justify-between items-center px-6 md:px-12 lg:px-24 py-8">
-        <Link href="/" className="text-sm font-medium tracking-tight">ALEX</Link>
-        <div className="flex gap-6 md:gap-8 text-sm">
-          <a href="#work" className="text-zinc-500 hover:text-black transition-colors">Work</a>
-          <Link href="/about" className="text-zinc-500 hover:text-black transition-colors">About</Link>
-          <a href="#contact" className="text-zinc-500 hover:text-black transition-colors">Contact</a>
-        </div>
+    <main className="min-h-screen bg-[#f7f4ec] text-[#111] font-sans flex flex-col">
+      {/* Header: name on the left, About on the right */}
+      <nav className="flex justify-between items-center px-6 md:px-12 lg:px-24 pt-10 pb-16">
+        <Link href="/" className="text-sm uppercase tracking-wide">ALEX</Link>
+        <Link href="/about" className="text-sm uppercase tracking-wide hover:text-zinc-500 transition-colors">About</Link>
       </nav>
 
-      {/* Hero: full-viewport, headline anchored to the bottom */}
-      <header className="flex flex-col justify-end min-h-[85vh] px-6 md:px-12 lg:px-24 pb-16">
-        <h1 className="text-4xl md:text-6xl font-medium leading-[1.1] tracking-tight mb-8 max-w-4xl text-black">
-          Creative developer and designer focusing on building digital experiences that blend art and engineering.
-        </h1>
-        <p className="text-base md:text-lg text-zinc-500 leading-relaxed max-w-xl">
-          Currently based in India. I love exploring the intersection of design,
-          technology and human behavior to create intentional products.
+      {/* Intro paragraph about me */}
+      <header className="px-6 md:px-12 lg:px-24 pb-32">
+        <p className="font-serif text-3xl md:text-5xl lg:text-6xl font-light leading-[1.25] max-w-5xl">
+          I&apos;m Alex, a visual &amp; interactive designer currently exploring the intersection of AI and
+          human-centric design. Based in India, I spend my time on design work, basketball, and the mountains.
         </p>
       </header>
 
-      {/* Work: alternating image and text rows, generous vertical space */}
-      <section id="work" className="px-6 md:px-12 lg:px-24 pt-24 pb-32">
-        <h2 className="text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-16">
-          Selected Work
-        </h2>
-        <div className="space-y-32">
+      {/* Projects: only shows entries that are published in Notion */}
+      {work.length > 0 && (
+        <section id="work" className="px-6 md:px-12 lg:px-24 pb-32 space-y-32">
           {work.map((item, index) => {
             const mediaFirst = index % 2 === 0;
 
-            // Only render a photo block when the Notion row has a cover image.
             const media = item.image ? (
-              <div className={`aspect-[4/3] bg-zinc-100 overflow-hidden group ${mediaFirst ? "" : "md:order-2"}`}>
+              <div className={`aspect-[4/3] overflow-hidden ${mediaFirst ? "" : "md:order-2"}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                />
+                <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
               </div>
             ) : null;
 
             const text = (
               <div className={`flex flex-col justify-center ${mediaFirst ? "" : "md:order-1"}`}>
-                <span className="text-xs text-zinc-400 uppercase tracking-widest mb-3">
+                <span className="text-xs uppercase tracking-widest text-zinc-500 mb-3">
                   {[item.category, item.year].filter(Boolean).join(" • ")}
                 </span>
-                <h3 className="text-2xl md:text-3xl font-medium mb-4 text-black">{item.title}</h3>
+                <h3 className="font-serif text-3xl md:text-4xl font-light mb-4">{item.title}</h3>
                 {item.href && (
                   <a
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-medium border-b border-black pb-1 w-fit hover:text-zinc-500 hover:border-zinc-500 transition-colors"
+                    className="text-sm border-b border-black pb-1 w-fit hover:text-zinc-500 hover:border-zinc-500 transition-colors"
                   >
                     View Project ↗
                   </a>
@@ -77,18 +62,21 @@ export default async function HomePage() {
               </div>
             );
           })}
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Footer */}
-      <footer id="contact" className="px-6 md:px-12 lg:px-24 py-24 border-t border-zinc-200 flex flex-col md:flex-row justify-between items-start gap-12">
+      {/* Contact: simple, no placeholder text */}
+      <footer id="contact" className="mt-auto px-6 md:px-12 lg:px-24 py-16 flex flex-col md:flex-row justify-between gap-10">
         <div>
-          <h2 className="text-2xl font-medium mb-3">Let&apos;s connect</h2>
-          <p className="text-zinc-500">Available for collaborations.</p>
+          <p className="text-xs uppercase tracking-widest text-zinc-500 mb-4">Social</p>
+          <div className="flex gap-6 text-sm">
+            <a href="https://x.com/alex_gs2222" target="_blank" rel="noopener noreferrer" className="border-b border-black pb-0.5 hover:text-zinc-500 hover:border-zinc-500 transition-colors">X</a>
+            <a href="https://github.com/gurpreets1412" target="_blank" rel="noopener noreferrer" className="border-b border-black pb-0.5 hover:text-zinc-500 hover:border-zinc-500 transition-colors">GitHub</a>
+          </div>
         </div>
-        <div className="flex gap-8 text-sm font-medium text-zinc-500">
-          <a href="https://x.com/alex_gs2222" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">X</a>
-          <a href="https://github.com/gurpreets1412" target="_blank" rel="noopener noreferrer" className="hover:text-black transition-colors">GitHub</a>
+        <div>
+          <p className="text-xs uppercase tracking-widest text-zinc-500 mb-4">Discord</p>
+          <p className="text-sm">alex_gs0</p>
         </div>
       </footer>
     </main>
