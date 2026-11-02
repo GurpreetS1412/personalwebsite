@@ -19,11 +19,11 @@ export default async function AboutPage() {
       </nav>
 
       <div className="px-6 md:px-12 lg:px-24 pb-32">
-        {/* Asymmetric intro: narrow image column, wide text column */}
+        {/* Asymmetric intro: narrow photo column, wide text column */}
         <section className="grid grid-cols-1 md:grid-cols-12 gap-12 mt-16 mb-32 items-end">
-          <div className="md:col-span-5 relative aspect-[4/5] bg-zinc-100 overflow-hidden">
-            {/* Replace with profile photo */}
-            <div className="w-full h-full bg-zinc-200" />
+          <div className="md:col-span-5 relative aspect-square bg-zinc-100 overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/about/profile.png" alt="Alex" className="w-full h-full object-cover" />
           </div>
           <div className="md:col-span-6 md:col-start-7">
             <h1 className="text-3xl md:text-5xl font-medium leading-[1.15] tracking-tight">
@@ -69,6 +69,41 @@ export default async function AboutPage() {
             </div>
           </div>
         </div>
+
+        {/* Memories: 2023 mountain trip */}
+        <section className="pt-24 border-t border-zinc-200 mb-32">
+          <h2 className="text-xs uppercase tracking-widest text-zinc-400 font-semibold mb-16">Memories</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <figure className="relative aspect-[9/16] bg-zinc-100 overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/about/mountain-1.jpg" alt="Snow-covered mountain path in the clouds" className="w-full h-full object-cover" />
+              <figcaption className="absolute top-0 left-0 right-0 p-6 bg-gradient-to-b from-black/60 to-transparent text-white">
+                <p className="text-lg md:text-xl font-medium">Somewhere up in the mountains</p>
+                <p className="text-xs uppercase tracking-widest text-white/80 mt-1">2023</p>
+              </figcaption>
+            </figure>
+            <figure className="relative aspect-[9/16] bg-zinc-100 overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/about/mountain-2.jpg" alt="Glacial lake with snow-covered peaks" className="w-full h-full object-cover" />
+            </figure>
+          </div>
+          <p className="mt-6 text-sm text-zinc-500">A trip to the mountains in 2023.</p>
+        </section>
+
+        {/* Hobby */}
+        <section className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-32">
+          <h2 className="md:col-span-12 text-xs uppercase tracking-widest text-zinc-400 font-semibold">Hobby</h2>
+          <div className="md:col-span-5 bg-zinc-100 overflow-hidden max-w-[280px] w-full">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/about/basketball.jpg" alt="Basketball hoop against the sky" className="w-full h-auto object-cover" />
+          </div>
+          <div className="md:col-span-6 md:col-start-7">
+            <h3 className="text-2xl md:text-3xl font-medium mb-4">Basketball</h3>
+            <p className="text-zinc-500 leading-relaxed max-w-md">
+              Basketball is my favourite hobby, and a big part of how I spend my time outside of design.
+            </p>
+          </div>
+        </section>
 
         {/* Journal, fed from Notion */}
         <section className="pt-24 border-t border-zinc-200">
