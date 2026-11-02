@@ -112,9 +112,6 @@ export default async function AboutPage() {
             {journal.map((item) => {
               const body = (
                 <>
-                  <div className="aspect-video bg-zinc-100 mb-5 overflow-hidden">
-                    <div className="w-full h-full bg-zinc-200 group-hover:scale-105 transition-transform duration-700 ease-in-out" />
-                  </div>
                   <h3 className="text-xl font-medium mb-2 group-hover:text-zinc-500 transition-colors">{item.title}</h3>
                   {item.subtitle && (
                     <p className="text-sm text-zinc-500 leading-relaxed">{item.subtitle}</p>

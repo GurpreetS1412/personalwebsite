@@ -36,20 +36,17 @@ export default async function HomePage() {
           {work.map((item, index) => {
             const mediaFirst = index % 2 === 0;
 
-            const media = (
+            // Only render a photo block when the Notion row has a cover image.
+            const media = item.image ? (
               <div className={`aspect-[4/3] bg-zinc-100 overflow-hidden group ${mediaFirst ? "" : "md:order-2"}`}>
-                {item.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-zinc-200 group-hover:scale-105 transition-transform duration-700 ease-in-out" />
-                )}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                />
               </div>
-            );
+            ) : null;
 
             const text = (
               <div className={`flex flex-col justify-center ${mediaFirst ? "" : "md:order-1"}`}>
@@ -71,7 +68,10 @@ export default async function HomePage() {
             );
 
             return (
-              <div key={item.id} className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+              <div
+                key={item.id}
+                className={media ? "grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center" : "max-w-xl"}
+              >
                 {media}
                 {text}
               </div>
