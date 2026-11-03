@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { getAbout, getWork } from "../../lib/notion";
+import { getWork } from "../../lib/notion";
 
 export default async function AboutPage() {
-  const [items, work] = await Promise.all([getAbout(), getWork()]);
-  const experience = items.filter((item) => item.section === "Experience");
+  const work = await getWork();
 
   const underline =
     "border-b border-black pb-0.5 hover:text-zinc-500 hover:border-zinc-500 transition-colors";
@@ -55,32 +54,9 @@ export default async function AboutPage() {
           </section>
         )}
 
-        {/* Experience (from Notion) and Connect */}
+        {/* Memories and Connect */}
         <section className="grid grid-cols-1 md:grid-cols-12 gap-16">
           <div className="md:col-span-5 md:col-start-2 space-y-24">
-          {experience.length > 0 && (
-            <div>
-              <h2 className="font-serif text-3xl md:text-4xl font-light mb-12">
-                <span className="mr-3 text-2xl" aria-hidden="true">✷</span>Experience
-              </h2>
-              <div className="space-y-10">
-                {experience.map((item) => (
-                  <div key={item.id} className="space-y-2">
-                    {item.href ? (
-                      <a href={item.href} target="_blank" rel="noopener noreferrer" className={`text-base ${underline}`}>
-                        {item.title}
-                      </a>
-                    ) : (
-                      <p className="text-base">{item.title}</p>
-                    )}
-                    {item.subtitle && <p className="font-serif italic text-zinc-700">{item.subtitle}</p>}
-                    {item.period && <p className="text-xs uppercase tracking-widest text-zinc-600">{item.period}</p>}
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
           <div>
             <h2 className="font-serif text-3xl md:text-4xl font-light mb-12">
               <span className="mr-3 text-2xl" aria-hidden="true">✷</span>Memories
