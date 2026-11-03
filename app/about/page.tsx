@@ -57,8 +57,9 @@ export default async function AboutPage() {
 
         {/* Experience (from Notion) and Connect */}
         <section className="grid grid-cols-1 md:grid-cols-12 gap-16">
+          <div className="md:col-span-5 md:col-start-2 space-y-24">
           {experience.length > 0 && (
-            <div className="md:col-span-5 md:col-start-2">
+            <div>
               <h2 className="font-serif text-3xl md:text-4xl font-light mb-12">
                 <span className="mr-3 text-2xl" aria-hidden="true">✷</span>Experience
               </h2>
@@ -80,6 +81,24 @@ export default async function AboutPage() {
             </div>
           )}
 
+          <div>
+            <h2 className="font-serif text-3xl md:text-4xl font-light mb-12">
+              <span className="mr-3 text-2xl" aria-hidden="true">✷</span>Memories
+            </h2>
+            <div className="flex gap-4">
+              <figure className="w-32 sm:w-40 aspect-[3/4] overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/about/mountain-1.jpg" alt="Snow-covered mountain path in the clouds" className="w-full h-full object-cover" />
+              </figure>
+              <figure className="w-32 sm:w-40 aspect-[3/4] overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/about/mountain-2.jpg" alt="Glacial lake with snow-covered peaks" className="w-full h-full object-cover" />
+              </figure>
+            </div>
+            <p className="mt-4 text-sm text-zinc-700">Somewhere up in the mountains, 2023.</p>
+          </div>
+          </div>
+
           <div className="md:col-span-4 md:col-start-8">
             <h2 className="font-serif text-3xl md:text-4xl font-light mb-12">
               <span className="mr-3 text-2xl" aria-hidden="true">✷</span>Connect
@@ -90,28 +109,6 @@ export default async function AboutPage() {
               <p>Discord: alex_gs0</p>
             </div>
           </div>
-        </section>
-
-        {/* Memories: 2023 mountain trip */}
-        <section className="md:pl-[8.33%]">
-          <h2 className="font-serif text-3xl md:text-4xl font-light mb-12">
-            <span className="mr-3 text-2xl" aria-hidden="true">✷</span>Memories
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl">
-            <figure className="relative aspect-[9/16] overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/about/mountain-1.jpg" alt="Snow-covered mountain path in the clouds" className="w-full h-full object-cover" />
-              <figcaption className="absolute top-0 left-0 right-0 p-5 bg-gradient-to-b from-black/60 to-transparent text-white">
-                <p className="text-lg font-medium">Somewhere up in the mountains</p>
-                <p className="text-xs uppercase tracking-widest text-white/80 mt-1">2023</p>
-              </figcaption>
-            </figure>
-            <figure className="relative aspect-[9/16] overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/about/mountain-2.jpg" alt="Glacial lake with snow-covered peaks" className="w-full h-full object-cover" />
-            </figure>
-          </div>
-          <p className="mt-6 text-sm text-zinc-700">A trip to the mountains in 2023.</p>
         </section>
 
         {/* Hobby */}
