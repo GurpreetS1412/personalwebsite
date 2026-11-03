@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { getWork } from "../../lib/notion";
+import { getAbout, getWork } from "../../lib/notion";
 
 export default async function AboutPage() {
-  const work = await getWork();
+  const [items, work] = await Promise.all([getAbout(), getWork()]);
+  const experience = items.filter((item) => item.section === "Experience");
 
   const underline =
     "border-b border-black pb-0.5 hover:text-zinc-500 hover:border-zinc-500 transition-colors";
@@ -30,8 +31,7 @@ export default async function AboutPage() {
 
       <div className="px-6 md:px-12 lg:px-24 space-y-32 pb-32">
         {/* Projects: only shows entries published in Notion */}
-        {work.length > 0 && (
-          <section className="md:pl-[8.33%]">
+        <section className="md:pl-[8.33%]">
             <h2 className="font-serif text-3xl md:text-4xl font-light mb-12">
               <span className="mr-3 text-2xl" aria-hidden="true">✷</span>Projects
             </h2>
@@ -51,12 +51,31 @@ export default async function AboutPage() {
                 </div>
               ))}
             </div>
-          </section>
-        )}
+        </section>
 
         {/* Memories and Connect */}
         <section className="grid grid-cols-1 md:grid-cols-12 gap-16">
           <div className="md:col-span-5 md:col-start-2 space-y-24">
+          <div>
+            <h2 className="font-serif text-3xl md:text-4xl font-light mb-12">
+              <span className="mr-3 text-2xl" aria-hidden="true">✷</span>Experience
+            </h2>
+            <div className="space-y-10">
+              {experience.map((item) => (
+                <div key={item.id} className="space-y-2">
+                  {item.href ? (
+                    <a href={item.href} target="_blank" rel="noopener noreferrer" className="text-base border-b border-black pb-0.5 w-fit block hover:text-zinc-500 hover:border-zinc-500 transition-colors">
+                      {item.title}
+                    </a>
+                  ) : (
+                    <p className="text-base">{item.title}</p>
+                  )}
+                  {item.subtitle && <p className="font-serif italic text-zinc-700">{item.subtitle}</p>}
+                  {item.period && <p className="text-xs uppercase tracking-widest text-zinc-600">{item.period}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
           <div>
             <h2 className="font-serif text-3xl md:text-4xl font-light mb-12">
               <span className="mr-3 text-2xl" aria-hidden="true">✷</span>Memories

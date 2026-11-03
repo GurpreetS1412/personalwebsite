@@ -21,8 +21,10 @@ export default async function HomePage() {
       </header>
 
       {/* Projects: only shows entries that are published in Notion */}
-      {work.length > 0 && (
-        <section id="work" className="px-6 md:px-12 lg:px-24 pb-32 space-y-32">
+      <section id="work" className="px-6 md:px-12 lg:px-24 pb-32 space-y-32">
+        <h2 className="font-serif text-3xl md:text-4xl font-light">
+          <span className="mr-3 text-2xl" aria-hidden="true">✷</span>Projects
+        </h2>
           {work.map((item, index) => {
             const mediaFirst = index % 2 === 0;
 
@@ -62,8 +64,7 @@ export default async function HomePage() {
               </div>
             );
           })}
-        </section>
-      )}
+      </section>
 
       {/* Contact: simple, no placeholder text */}
       <footer id="contact" className="mt-auto px-6 md:px-12 lg:px-24 py-16 flex flex-col md:flex-row justify-between gap-10">
